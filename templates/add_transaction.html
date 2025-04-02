@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Transação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-xl font-bold text-center mb-4">Adicionar Transação</h1>
+        <form method="POST">
+            <div class="mb-4">
+                <label class="block">Tipo:</label>
+                <select name="type" class="w-full p-2 border rounded">
+                    <option value="receita">Receita</option>
+                    <option value="despesa">Despesa</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block">Valor:</label>
+                <input type="number" step="0.01" name="amount" class="w-full p-2 border rounded" required>
+            </div>
+            <div class="mb-4">
+                <label class="block">Descrição:</label>
+                <input type="text" name="description" class="w-full p-2 border rounded" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Salvar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

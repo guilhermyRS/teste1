@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador Financeiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-xl font-bold text-center mb-4">Gerenciador Financeiro</h1>
+
+        <!-- Cards de resumo financeiro -->
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="bg-green-100 p-4 rounded text-center">
+                <h2 class="text-lg font-bold">Receitas</h2>
+                <p class="text-green-700 text-xl">R$ {{ total_income }}</p>
+            </div>
+            <div class="bg-red-100 p-4 rounded text-center">
+                <h2 class="text-lg font-bold">Despesas</h2>
+                <p class="text-red-700 text-xl">R$ {{ total_expense }}</p>
+            </div>
+            <div class="bg-blue-100 p-4 rounded text-center">
+                <h2 class="text-lg font-bold">Saldo</h2>
+                <p class="text-blue-700 text-xl">R$ {{ balance }}</p>
+            </div>
+        </div>
+
+        <!-- Lista de lançamentos -->
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr>
+                    <th class="border p-2">Descrição</th>
+                    <th class="border p-2">Valor</th>
+                    <th class="border p-2">Tipo</th>
+                    <th class="border p-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td class="border p-2">{{ transaction[3] }}</td>
+                    <td class="border p-2">R$ {{ transaction[2] }}</td>
+                    <td class="border p-2">{{ transaction[1] }}</td>
+                    <td class="border p-2">
+                        <a href="{{ url_for('delete_transaction', id=transaction[0]) }}" class="text-red-500">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botão para adicionar transação -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('add_transaction') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Adicionar Transação</a>
+        </div>
+    </div>
+</body>
+</html>
